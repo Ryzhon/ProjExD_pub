@@ -20,7 +20,6 @@ class Bird(pg.sprite.Sprite):
              pg.K_LEFT : [-5, 0],
              pg.K_RIGHT: [+5, 0],}
 
-
     def __init__(self,fn,r,xy):
         super().__init__()
         self.image=pg.image.load(fn)
@@ -55,7 +54,6 @@ class Bomb(pg.sprite.Sprite):
     def update(self, screen):
         self.rect.move_ip(self.vx, self.vy)
         x, y = check_bound(screen.rect, self.rect)
-     
 
         self.vx *= x 
         self.vy *= y 
