@@ -5,7 +5,7 @@ import random
 import time
 
 
-class Screen:
+class Screen:#c0b20141
     def __init__(self, fn, wh, title):
         super().__init__()
         pg.display.set_caption(title)
@@ -14,7 +14,7 @@ class Screen:
         self.rect=self.disp.get_rect()
         self.image = pg.image.load(fn)
 
-class Bird(pg.sprite.Sprite):
+class Bird(pg.sprite.Sprite):#c0b20141
     key_delta = {pg.K_UP   : [0, -5],       
              pg.K_DOWN : [0, +5],
              pg.K_LEFT : [-5, 0],
@@ -40,7 +40,7 @@ class Bird(pg.sprite.Sprite):
                     self.rect.centery -= delta[1]
 
 
-class Bomb(pg.sprite.Sprite):
+class Bomb(pg.sprite.Sprite):#c0b20141
     def __init__(self,color, r, vxy, screen):
         super().__init__()
         self.image = pg.Surface((2*r, 2*r))
@@ -58,7 +58,7 @@ class Bomb(pg.sprite.Sprite):
         self.vx *= x 
         self.vy *= y 
 
-class RelatedWall():
+class RelatedWall():#c0b20141
     def __init__(self):
         self.speed = 1.05
         self.conflict = 0
@@ -102,7 +102,7 @@ class Negi(pg.sprite.Sprite):
         self.rect.center = xy
         
 
-def main():
+def main():#c0b20141
     NEGI = 0
     negi_list = [20,40,60,80]
     global conflict
@@ -161,7 +161,7 @@ def main():
                 return True
             elif key_contenue_states[pg.K_RETURN]==True:
                 return False
-        else:
+        else:#c0b20141
             tori.update(screen)
             tori.draw(screen.disp)
             bombs.update(screen)
@@ -186,14 +186,14 @@ def main():
         negi.draw(screen.disp)
         pg.display.update()
         clock.tick(1000) 
-    
+    #c0b20141
 def check_bound(sc_r, obj_r):
     x, y = +1, +1
     if obj_r.left < sc_r.left or sc_r.right  < obj_r.right : x = -1
     if obj_r.top  < sc_r.top  or sc_r.bottom < obj_r.bottom: y = -1
     return x, y
 
-
+#c0b20141
 if __name__ == "__main__":
     pg.init() 
     while True:
