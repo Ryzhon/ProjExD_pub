@@ -115,6 +115,9 @@ class Negi(pg.sprite.Sprite): #ねぎを追加
         
 
 def main():
+    NEGI = 0 #ねぎの表示の有無
+    negi_list = [20,40,60,80] #ねぎの出現するスコアの値
+    global conflict
     
     clock = pg.time.Clock()
     check_wall=RelatedWall()
@@ -135,11 +138,15 @@ def main():
     # screen.disp.blit(bomb.image, bomb.rect)                   # 爆弾用のSurfaceを画面用Surfaceに貼り付ける
  
     bombs = pg.sprite.Group()
+
     for _ in range(2):
         # check_wall.show_conflict(screen,Bomb((255,0,0), 10, (+2,+2), screen))
         bombs.add(Bomb((255,0,0), 10, (+4,+4), screen))
 
     conflict = check_wall.show_conflict(screen, bombs)
+
+    negi = pg.sprite.Group() ##
+
     while True:
         # 練習2
         screen.disp.blit(screen.image, (0,0))
@@ -196,6 +203,23 @@ def main():
             check_wall.speedup(screen, bombs)
 
             conflict = check_wall.show_conflict(screen, bombs)
+
+        if check_wall.conflict == negi_list[0]:
+            NEGI = 1 #ねぎの表示
+            negi_list.pop(0) #リスト番号０の削除
+
+        if NEGI == 1:
+            negi.add(Negi("fig/negi.png", 0.1, (random.randint(0, 1600), random.randint(0, 400))))
+            NEGI = 0
+
+        for i in pg.sprite.groupcollide(negi, tori, False, False):
+            negi.remove(i)
+            NEGI = 0
+            check_wall.conflict += 5  #スコアを５追加
+ 
+        negi.draw(screen.disp)
+
+
         
 
         pg.display.update()  # 画面の更新
