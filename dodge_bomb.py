@@ -155,7 +155,6 @@ def main():
             check_wall.GameOver(screen)
             key_contenue_states = pg.key.get_pressed()
             if key_contenue_states[pg.K_SPACE]==True:
-                print("ldkflakdf")
                 pg.display.update()
                 check_wall.conflict = 0
                 conflict = 0
