@@ -92,7 +92,7 @@ class RelatedWall():
                 _.vy *= self.speed 
                 print(_.vx,_.vy)
 
-class Negi(pg.sprite.Sprite):
+class Negi(pg.sprite.Sprite): #C0B21168
     def __init__(self, fn, r, xy):
       
         super().__init__()
@@ -171,15 +171,15 @@ def main():
 
             conflict = check_wall.show_conflict(screen, bombs)
 
-        if check_wall.conflict == negi_list[0]:
+        if check_wall.conflict == negi_list[0]: #C0B21168
             NEGI = 1 
             negi_list.pop(0)
 
-        if NEGI == 1:
+        if NEGI == 1: #C0B21168
             negi.add(Negi("fig/negi.png", 0.1, (random.randint(0, 1600), random.randint(0, 400))))
             NEGI = 0
 
-        for i in pg.sprite.groupcollide(negi, tori, False, False):
+        for i in pg.sprite.groupcollide(negi, tori, False, False): #C0B21168
             negi.remove(i)
             NEGI = 0
             check_wall.conflict += 5
